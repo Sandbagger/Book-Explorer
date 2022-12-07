@@ -13,9 +13,16 @@ RSpec.describe "Upload Books CSV", :type => :feature, js: true  do
     fill_in 'Confirm password', with: 'password' 
 
     click_on 'Register'
-    
+
     expect(page).to have_field 'Name'
     expect(page).to have_field 'Url'
-    expect(page).to have_field 'Attachment data'
+    expect(page).to have_button 'Create Books upload'
+
+    page.attach_file('books_upload_attachment', 'spec/Book CSV - Sheet1.csv', make_visible: true)
+
+
+    click_button 'Create Books upload'
+    expect(page).to have_content 'Books upload was successfully created'
+
   end
 end
