@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'books_uploads#new'
+  devise_for :users
   resources :books_uploads
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
