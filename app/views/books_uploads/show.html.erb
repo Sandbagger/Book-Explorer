@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @books_upload %>
+
+<div>
+  <%= link_to "Edit this books upload", edit_books_upload_path(@books_upload) %> |
+  <%= link_to "Back to books uploads", books_uploads_path %>
+
+  <%= button_to "Destroy this books upload", @books_upload, method: :delete %>
+</div>

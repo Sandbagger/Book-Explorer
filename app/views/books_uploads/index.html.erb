@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Books uploads</h1>
+
+<div id="books_uploads">
+  <% @books_uploads.each do |books_upload| %>
+    <%= render books_upload %>
+    <p>
+      <%= link_to "Show this books upload", books_upload %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New books upload", new_books_upload_path %>

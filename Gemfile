@@ -68,3 +68,14 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
+
+gem 'devise'
+gem 'devise-tailwinded'
+gem 'pundit', '~> 2.2'
+
+gem 'shrine'
+gem "aws-sdk-s3", "~> 1.14"

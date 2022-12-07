@@ -1,0 +1,2 @@
+class BooksUpload < ApplicationRecord
+end

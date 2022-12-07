@@ -1,0 +1,32 @@
+<%= form_with(model: books_upload) do |form| %>
+  <% if books_upload.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(books_upload.errors.count, "error") %> prohibited this books_upload from being saved:</h2>
+
+      <ul>
+        <% books_upload.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :url, style: "display: block" %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.label :attachment_data, style: "display: block" %>
+    <%= form.text_area :attachment_data %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
