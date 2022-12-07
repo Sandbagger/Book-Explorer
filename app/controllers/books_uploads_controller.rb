@@ -13,6 +13,7 @@ class BooksUploadsController < ApplicationController
   # GET /books_uploads/new
   def new
     @books_upload = BooksUpload.new
+    authorize @books_upload
   end
 
   # GET /books_uploads/1/edit
@@ -22,7 +23,7 @@ class BooksUploadsController < ApplicationController
   # POST /books_uploads or /books_uploads.json
   def create
     @books_upload = BooksUpload.new(books_upload_params)
-
+    authorize @books_upload
     respond_to do |format|
       if @books_upload.save
         format.html { redirect_to books_upload_url(@books_upload), notice: "Books upload was successfully created." }
