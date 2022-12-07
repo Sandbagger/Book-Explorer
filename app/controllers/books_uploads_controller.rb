@@ -26,6 +26,7 @@ class BooksUploadsController < ApplicationController
     authorize @books_upload
     respond_to do |format|
       if @books_upload.save
+        @books_upload.update(url: @books_upload.attachment_url)
         format.html { redirect_to books_upload_url(@books_upload), notice: "Books upload was successfully created." }
         format.json { render :show, status: :created, location: @books_upload }
       else
@@ -66,6 +67,6 @@ class BooksUploadsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def books_upload_params
-      params.require(:books_upload).permit(:name, :url, :attachment_data)
+      params.require(:books_upload).permit(:name, :url, :attachment)
     end
 end

@@ -1,17 +1,24 @@
 <div id="<%= dom_id books_upload %>">
-  <p>
-    <strong>Name:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
     <%= books_upload.name %>
   </p>
 
-  <p>
-    <strong>Url:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Url:</strong>
     <%= books_upload.url %>
   </p>
 
-  <p>
-    <strong>Attachment data:</strong>
-    <%= books_upload.attachment_data %>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Attachment data:</strong>
+       <%= books_upload.attachment_data %>
   </p>
 
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this books uploader", books_upload, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this books uploader', edit_books_uploader_path(books_upload), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
 </div>

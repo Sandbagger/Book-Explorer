@@ -23,7 +23,8 @@
 
     <div class="my-5">
     <%= form.label :attachment_data %>
-     <%= form.file_field :attachment_data, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { single_upload_target: "input" } %>
+     <%= form.hidden_field :string, value: books_upload.cached_attachment_data %>
+     <%= form.file_field :attachment, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { single_upload_target: "input" } %>
   </div>
 
     <div class="my-5">
