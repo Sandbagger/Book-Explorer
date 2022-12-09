@@ -22,6 +22,7 @@ end
 Shrine.plugin :activerecord
 Shrine.plugin :cached_attachment_data # for retaining cached file on form redisplays
 Shrine.plugin :restore_cached_data    # refresh metadata for cached files
+Shrine.plugin :validation
 Shrine.plugin :presign_endpoint, presign_options: -> (request) {
   # Uppy will send the "filename" and "type" query parameters
   filename = request.params["filename"]
