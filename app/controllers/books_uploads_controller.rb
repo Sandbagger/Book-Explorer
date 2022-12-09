@@ -4,10 +4,13 @@ class BooksUploadsController < ApplicationController
   # GET /books_uploads or /books_uploads.json
   def index
     @books_uploads = BooksUpload.all
+    authorize @books_uploads
   end
 
   # GET /books_uploads/1 or /books_uploads/1.json
   def show
+    @books = @books_upload.attachment.read
+    authorize @books_upload
   end
 
   # GET /books_uploads/new
@@ -25,13 +28,14 @@ class BooksUploadsController < ApplicationController
     @books_upload = BooksUpload.new(books_upload_params)
     authorize @books_upload
     respond_to do |format|
-      if @books_upload.save
-        @books_upload.update(url: @books_upload.attachment_url)
+      if @books_upload.save!
+        @books_upload.update(url: @books_upload.attachment_url, name: @books_upload.attachment.original_filename)
         format.html { redirect_to books_upload_url(@books_upload), notice: "Books upload was successfully created." }
-        format.json { render :show, status: :created, location: @books_upload }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @books_upload.errors, status: :unprocessable_entity }
+        format.html do
+          flash.now[:alert] = "Error"
+          render :new, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -43,8 +47,11 @@ class BooksUploadsController < ApplicationController
         format.html { redirect_to books_upload_url(@books_upload), notice: "Books upload was successfully updated." }
         format.json { render :show, status: :ok, location: @books_upload }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @books_upload.errors, status: :unprocessable_entity }
+        format.html do
+          flash.now[:alert] = "Please fix errors below."
+           render :edit, status: :unprocessable_entity 
+        end
+       
       end
     end
   end
