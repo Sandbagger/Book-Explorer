@@ -1,3 +1,4 @@
+<% content_for :title, @books_upload.name %>
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
@@ -6,10 +7,35 @@
 
     <%= render @books_upload %>
 
-    <%= link_to 'Edit this books_uploader', edit_books_upload_path(@books_upload), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this books_uploader', books_upload_path(@books_upload), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+     <div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="table-auto">
+          <thead class="border-b">
+            <tr>
+              <% BooksUploadPresenter.new(@books).headers.each do | header | %>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left"><%= header.titleize %></th>
+              <% end%>
+          </thead>
+          <tbody>
+             <% BooksUploadPresenter.new(@books).rows.each do | row | %>
+              <tr>
+                <% row.each do | data | %>
+                  <td><%= data %></td>
+                <% end%>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <%= link_to 'Back to books_uploaders', books_upload_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>
+
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this books_upload', books_upload_path(@books_upload), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Back to books_upload', books_upload_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
